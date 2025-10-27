@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Parcial3pjxx.Migrations
 {
     /// <inheritdoc />
-    public partial class MIgracionInicial : Migration
+    public partial class MigracionInicialCorrecta : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,9 @@ namespace Parcial3pjxx.Migrations
                 {
                     IdCliente = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CuilCuit = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RazonSocial = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Domicilio = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CuilCuit = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    RazonSocial = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Domicilio = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,10 +32,10 @@ namespace Parcial3pjxx.Migrations
                 {
                     IdFactura = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tipo = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Numero = table.Column<int>(type: "int", nullable: false),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ImporteTotal = table.Column<float>(type: "real", nullable: false),
+                    ImporteTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IdCliente = table.Column<int>(type: "int", nullable: false),
                     ClienteIdCliente = table.Column<int>(type: "int", nullable: false)
                 },
@@ -56,9 +56,9 @@ namespace Parcial3pjxx.Migrations
                 {
                     IdItem = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
-                    Importe = table.Column<float>(type: "real", nullable: false),
+                    ImporteUnitario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IdFactura = table.Column<int>(type: "int", nullable: false),
                     FacturaIdFactura = table.Column<int>(type: "int", nullable: false)
                 },

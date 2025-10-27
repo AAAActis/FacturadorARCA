@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LL0yFDEVbao=",
+  "dgSpecHash": "5SlzN6ODFZ0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Santi\\Desktop\\ParcialTresPLA-66d36c26b8a7ab53074344ea38bcf05047a6a511\\Parcial3pjxx\\Parcial3pjxx.csproj",
+  "projectFilePath": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Parcial3pjxx.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Santi\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Santi\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

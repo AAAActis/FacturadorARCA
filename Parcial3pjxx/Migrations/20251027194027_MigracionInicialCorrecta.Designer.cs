@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Parcial3pjxx.CodeFirst;
 
@@ -11,9 +12,11 @@ using Parcial3pjxx.CodeFirst;
 namespace Parcial3pjxx.Migrations
 {
     [DbContext(typeof(FacturadorDbContext))]
-    partial class FacturadorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251027194027_MigracionInicialCorrecta")]
+    partial class MigracionInicialCorrecta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -31,13 +31,13 @@ namespace Parcial3pjxx.CodeFirst
             {
                 Console.Clear();
                 presenter.MostrarMenuPrincipal();
-                opc = reader.LeerEntero();
 
                 do
                 {
                     try
                     {
                         opc = int.Parse(Console.ReadLine());
+                        Console.Clear();
                         if (opc > 3 || opc < 1)
                         {
                             band = true;
@@ -62,6 +62,7 @@ namespace Parcial3pjxx.CodeFirst
                         presenter.MostrarMensaje("Opción inválida. Intente nuevamente.");
                         break;
                 }
+
             }
             while (repetir);
         }
@@ -69,6 +70,7 @@ namespace Parcial3pjxx.CodeFirst
         // ------------------------------ LOGICA DE CLIENTES -------------------------------------
         public void GestionarClientes()
         {
+            presenter.MostrarGestionarClientes();
 
             bool band = true;
             int opc = 0;
@@ -124,6 +126,7 @@ namespace Parcial3pjxx.CodeFirst
                     context.Clientes.Add(cte);
                     context.SaveChanges();
                     presenter.MostrarMensaje("El cliente fue dado de alta con exito");
+                    Console.WriteLine($"La id del cliente creado es: { cte.IdCliente}");
                 }
                 catch (DbUpdateException dbEx)
                 {
@@ -231,6 +234,7 @@ namespace Parcial3pjxx.CodeFirst
         //aca literal copie y pegue lo que hiciste en lo de gestionar cliente -- si pq no servis ni para bosta por eso
         public void GestionarFacturas()
         {
+            presenter.MostrarGestionarFacturas();
 
             bool band = true;
             int opc = 0;
