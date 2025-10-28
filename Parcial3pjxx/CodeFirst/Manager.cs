@@ -13,10 +13,10 @@ namespace Parcial3pjxx.CodeFirst
     {
         private readonly Presenter presenter;
         private readonly Reader reader;
-        private readonly IServiceProvider _serviceProvider;
-        public Manager(IServiceProvider serviceProvider, Presenter presenter, Reader reader)
+        private readonly FacturadorDbContext context;
+        public Manager(FacturadorDbContext _context, Presenter presenter, Reader reader)
         {
-            _serviceProvider = serviceProvider;
+            context = _context;
             this.presenter = presenter;
             this.reader = reader;
         }
@@ -70,17 +70,18 @@ namespace Parcial3pjxx.CodeFirst
         // ------------------------------ LOGICA DE CLIENTES -------------------------------------
         public void GestionarClientes()
         {
+            Console.Clear();
             presenter.MostrarGestionarClientes();
 
             bool band = true;
             int opc = 0;
 
             do
-            {
+            {    
                 try
                 {
                     opc = int.Parse(Console.ReadLine());
-                    if (opc > 4 || opc < 1)
+                    if (opc > 5 || opc < 1)
                     {
                         band = true;
                         Console.WriteLine("Opcion mal ingresada");
@@ -96,138 +97,189 @@ namespace Parcial3pjxx.CodeFirst
                 case 2: ModificarCliente(); break;
                 case 3: EliminarCliente(); break;
                 case 4: ConsultarCliente(); break;
-                case 5: band = false; break;
-                default:
-                    presenter.MostrarMensaje("Opcion invalida.");
-                    break;
+                case 5: return;
+
             }
 
         }
 
 
         //METODOS DE CLIENTE
-        //pude hacer todos los metdos, queda fijarse si esta bien
+
         public void CrearCliente()
         {
-            using (var context = _serviceProvider.GetRequiredService<FacturadorDbContext>())
+            Console.Clear();
+            presenter.MostrarCrearCliente();
+
+            Cliente cte = new Cliente();
+
+            presenter.MostrarMensajeAlLado("   Ingrese la razon social del cliente: ");
+            cte.RazonSocial = reader.LeerCadena();
+
+            presenter.MostrarMensajeAlLado("   Ingrese el CUIL / CUIT del cliente: ");
+            cte.CuilCuit = reader.LeerCadena();
+
+            presenter.MostrarMensajeAlLado("   Ingrese el domicilio del cliente: ");
+            cte.Domicilio = reader.LeerCadena();
+
+            try
             {
-                Cliente cte = new Cliente();
-                presenter.MostrarMensaje("Ingrese la razon social del cliente");
-                cte.RazonSocial = reader.LeerCadena();
+                context.Clientes.Add(cte);
+                context.SaveChanges();
 
-                presenter.MostrarMensaje("Ingrese el CUIL / CUIT del cliente");
-                cte.CuilCuit = reader.LeerCadena();
+                presenter.MostrarClienteCreado(cte);
+                reader.LeerCadena();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensajeError = dbEx.InnerException?.Message ?? dbEx.Message;
 
-                presenter.MostrarMensaje("Ingrese el domicilio del cliente");
-                cte.Domicilio = reader.LeerCadena();
-
-                try
+                if (mensajeError.Contains("UNIQUE constraint") || mensajeError.Contains("duplicate key"))
                 {
-                    context.Clientes.Add(cte);
-                    context.SaveChanges();
-                    presenter.MostrarMensaje("El cliente fue dado de alta con exito");
-                    Console.WriteLine($"La id del cliente creado es: { cte.IdCliente}");
+                    presenter.MostrarMensaje("Error: Ya existe un cliente con ese CUIL / CUIT.");
                 }
-                catch (DbUpdateException dbEx)
+                else
                 {
-                    string mensajeError = dbEx.InnerException?.Message ?? dbEx.Message;
-
-                    if (mensajeError.Contains("UNIQUE constraint") || mensajeError.Contains("duplicate key"))
-                    {
-                        presenter.MostrarMensaje("Error: Ya existe un cliente con ese CUIL / CUIT.");
-                    }
-                    else
-                    {
-                        presenter.MostrarMensaje($"Error de base de datos: {mensajeError}");
-                    }
+                    presenter.MostrarMensaje($"Error de base de datos: {mensajeError}");
                 }
-                catch (Exception ex)
-                {
-                    presenter.MostrarMensaje($"Ocurrio un error inesperado: {ex.Message}");
-                }
+                presenter.MostrarMensaje("\n   Presione [Enter] para volver al menú...");
+                reader.LeerCadena();
+            }
+            catch (Exception ex)
+            {
+                presenter.MostrarMensaje($"Ocurrio un error inesperado: {ex.Message}");
+                presenter.MostrarMensaje("\n   Presione [Enter] para volver al menú...");
+                reader.LeerCadena();
             }
         }
+        
 
         private void ModificarCliente()
         {
-            using (var context = _serviceProvider.GetRequiredService<FacturadorDbContext>())
+            Console.Clear();
+            presenter.MostrarModificarCliente();
+
+            presenter.MostrarMensajeAlLado("Ingrese el ID del Cliente a Modificar: ");
+            int id = reader.LeerEntero();
+            var cte = context.Clientes.Find(id);
+            if (cte == null)
             {
-                presenter.MostrarMensaje("Ingrese el ID del Cliente a Modificar");
-                int id = reader.LeerEntero();
-                var cte = context.Clientes.Find(id);
+                presenter.MostrarMensaje("Cliente no encontrado!");
+                return;
+            }
+            presenter.MostrarMenuModificarCliente(cte);
                 if (cte == null)
                 {
                     presenter.MostrarMensaje("Cliente no encontrado!");
-                    return;
+                    Console.WriteLine($"Pulse ENTER para continuar");
+                    Console.ReadKey();
+                return;
                 }
 
-                presenter.MostrarMensaje("Que desea cambiar?");
-                presenter.MostrarMensaje("1. Domicilio");
-                presenter.MostrarMensaje("2. Razon Social");
-                presenter.MostrarMensaje("3. CUIT/CUIL");
-
+            bool repetirModificacion = true;
+            do
+            {
                 int opc = reader.LeerEntero();
+                Console.Clear();
 
                 switch (opc)
                 {
                     case 1:
-                        presenter.MostrarMensaje($"Domicilio actual ({cte.Domicilio}):");
-                        presenter.MostrarMensaje($"Ingrese el nuevo: ");
+                        presenter.MostrarTitulo("Modificacion Domicilio");
+                        presenter.MostrarMensaje($"Domicilio actual ({cte.Domicilio})");
+                        presenter.MostrarMensajeAlLado($"Ingrese el nuevo: ");
                         string dom = reader.LeerCadena();
                         cte.Domicilio = dom;
                         break;
                     case 2:
-                        presenter.MostrarMensaje($"Razon social actual ({cte.RazonSocial}):");
-                        presenter.MostrarMensaje($"Ingrese el nuevo: ");
+                        presenter.MostrarTitulo("Modificacion Razon Social");
+                        presenter.MostrarMensaje($"Razon social actual ({cte.RazonSocial})");
+                        presenter.MostrarMensajeAlLado($"Ingrese el nuevo: ");
                         string RazSoc = reader.LeerCadena();
                         cte.RazonSocial = RazSoc;
                         break;
                     case 3:
-                        presenter.MostrarMensaje($"CUIT/CUIL actual ({cte.CuilCuit}):");
-                        presenter.MostrarMensaje($"Ingrese el nuevo: ");
+                        presenter.MostrarTitulo("Modificacion CUIT/CUIL");
+                        presenter.MostrarMensaje($"CUIT/CUIL actual ({cte.CuilCuit})");
+                        presenter.MostrarMensajeAlLado($"Ingrese el nuevo: ");
                         string cuil = reader.LeerCadena();
-                        cte.Domicilio = cuil;
+                        cte.CuilCuit = cuil;
                         break;
                 }
 
+                presenter.MostrarMensaje("Desea modificar algo mas? (SI/NO)");
+                string repetir = reader.LeerCadena().ToUpper().Trim();
+
+                if (repetir == "SI")
+                {
+                    repetirModificacion = true;
+                    Console.Clear();
+                } else
+                {
+                    repetirModificacion = false;
+                    Console.Clear();
+                }
+
+            } while (repetirModificacion);
+                
+
                 context.SaveChanges();
                 presenter.MostrarMensaje("Cliente actualizado con exito!");
-            }
-
+                Console.WriteLine($"Pulse ENTER para continuar");
+                Console.ReadKey();
         }
         private void EliminarCliente()
         {
-            using (var context = _serviceProvider.GetRequiredService<FacturadorDbContext>())
+            presenter.MostrarEliminarCliente();
+            presenter.MostrarMensajeAlLado("ID del cliente a eliminar: ");
+            int id = reader.LeerEntero();
+            var cte = context.Clientes.Find(id);
+            if (cte == null)
             {
-                presenter.MostrarMensaje("ID del cliente a eliminar:");
-                int id = reader.LeerEntero();
-                var cte = context.Clientes.Find(id);
-                if (cte == null)
-                {
-                    presenter.MostrarMensaje("Cliente no encontrado!");
-                    return;
-                }
-
-                context.Clientes.Remove(cte);
-                context.SaveChanges();
-                presenter.MostrarMensaje("Cliente eliminado correctamente!");
+                presenter.MostrarMensaje("Cliente no encontrado!");
+                reader.LeerCadena();
+                return;
             }
+
+            presenter.MostrarConfirmacionEliminar(cte);
+            string confirmacion = reader.LeerCadena().ToUpper().Trim();
+
+            if (confirmacion == "SI")
+            {
+                try
+                {
+                    context.Clientes.Remove(cte);
+                    context.SaveChanges();
+                    presenter.MostrarMensaje("¡Cliente eliminado correctamente!");
+                }
+                catch (Exception ex)
+                {
+                    presenter.MostrarMensaje($"Error al eliminar: {ex.Message}");
+                }
+            }
+            else
+            {
+                presenter.MostrarMensaje("Operación cancelada.");
+            }
+            presenter.MostrarMensaje("\nPresione [Enter] para volver al menú...");
+            reader.LeerCadena();
         }
         private void ConsultarCliente()
         {
-            using (var context = _serviceProvider.GetRequiredService<FacturadorDbContext>())
+            presenter.MostrarConsultarCliente();
+            presenter.MostrarMensajeAlLado("ID del cliente a consultar: ");
+            int id = reader.LeerEntero();
+            var cte = context.Clientes.Find(id);
+            if (cte == null)
             {
-                presenter.MostrarMensaje("ID del cliente a consultar:");
-                int id = reader.LeerEntero();
-                var cte = context.Clientes.Find(id);
-                if (cte == null)
-                {
-                    presenter.MostrarMensaje("Cliente no encontrado!");
-                    return;
-                }
-                presenter.MostrarCliente(cte);
+                presenter.MostrarMensaje("Cliente no encontrado!");
+                reader.LeerCadena();
+                return;
             }
+            presenter.MostrarConsultaCliente(cte);
+            reader.LeerCadena();
         }
+        
 
 
         //----------------------------------- LOGICA DE FACTURA -------------------------------------
@@ -266,20 +318,22 @@ namespace Parcial3pjxx.CodeFirst
         //METODOS FACTURA
         public void EmitirFactura()
         {
-            using (var context = _serviceProvider.GetRequiredService<FacturadorDbContext>())
-            {
-                presenter.MostrarMensajeAlLado("Tipo de Factura a Emitir (A / B / C): ");
+                Console.Clear();
+            presenter.MostrarTitulo("Emitir Factura");
+            presenter.MostrarMensajeAlLado("Tipo de Factura a Emitir (A / B / C): ");
                 char tipo = reader.LeerChar();
                 presenter.MostrarMensaje("");
                 presenter.MostrarMensajeAlLado("Cliente: ");
                 string razon = reader.LeerCadena();
 
-                //esto me lo tiro chatgepetaje JUJU
+                //JUJU
                 var cte = context.Clientes.FirstOrDefault(c => c.RazonSocial == razon);
                 if (cte == null)
                 {
                     presenter.MostrarMensaje("Cliente no encontrado. Asegurese de registrarlo antes!");
-                    return;
+                    Console.WriteLine($"Pulse ENTER para continuar");
+                    Console.ReadKey();
+                return;
                 }
 
                 // Obtener ultimo numero para ese tipo
@@ -299,10 +353,15 @@ namespace Parcial3pjxx.CodeFirst
                 };
 
                 presenter.MostrarFactura(factura);
+                presenter.MostrarMensaje("\n");
+                Console.WriteLine($"Pulse ENTER para continuar");
+                Console.ReadKey();
+                Console.Clear();
 
-                bool seguirAgregando = true;
+            bool seguirAgregando = true;
                 do
                 {
+                    presenter.MostrarMensaje(".::Ingreso de Items::.");
                     Item nuevoItem = SolicitarItem();
                     factura.Items.Add(nuevoItem);
 
@@ -328,26 +387,30 @@ namespace Parcial3pjxx.CodeFirst
                         context.Facturas.Add(factura);
                         context.SaveChanges();
                         presenter.MostrarMensaje("¡Factura emitida con éxito!");
-                    }
+                        Console.WriteLine($"Pulse ENTER para continuar");
+                        Console.ReadKey();
+                }
                     catch (Exception ex)
                     {
                         presenter.MostrarMensaje($"Ocurrió un error al guardar: {ex.Message}");
-                    }
+                        Console.WriteLine($"Pulse ENTER para continuar");
+                        Console.ReadKey();
+                }
                 }
                 else
                 {
                     presenter.MostrarMensaje("Operación cancelada.");
-                }
+                    Console.WriteLine($"Pulse ENTER para continuar");
+                    Console.ReadKey();
             }
         }
         public void ConsultarFactura()
         {
-            using (var context = _serviceProvider.GetRequiredService<FacturadorDbContext>())
-            {
-                presenter.MostrarMensaje("ID de la Factura a Consultar:");
+                Console.Clear();
+            presenter.MostrarTitulo("Consulta Factura");
+                presenter.MostrarMensajeAlLado("ID de la Factura a Consultar: ");
                 int id = reader.LeerEntero();
 
-                //esto me lo tiro el chatgepetaje
                 var factura = context.Facturas
                      .Include(f => f.Cliente)
                      .Include(f => f.Items)
@@ -355,15 +418,19 @@ namespace Parcial3pjxx.CodeFirst
                 if (factura == null)
                 {
                     presenter.MostrarMensaje("Factura no encontrada!");
-                    return;
+                    Console.WriteLine($"Pulse ENTER para continuar");
+                    Console.ReadKey();
+                return;
                 }
                 presenter.MostrarFactura(factura);
-            }
+                Console.WriteLine($"Pulse ENTER para continuar");
+                Console.ReadKey();
+
         }
 
         public Item SolicitarItem()
         {
-            presenter.MostrarMensajeAlLado("Descripcion:");
+            presenter.MostrarMensajeAlLado("Descripcion: ");
             string desp = reader.LeerCadena();
             Console.Write("\n");
 

@@ -9,36 +9,52 @@ namespace Parcial3pjxx.Generic
 {
     public class Presenter
     {
+        public void MostrarTitulo(string titulo)
+        {
+            string borde = "==================================================";
+            string tituloCentrado = $"-- {titulo} --";
+
+            Console.Clear(); // ¡Importante! Limpia la pantalla
+            Console.WriteLine(borde);
+            // Centramos el título (asumiendo un ancho de 50)
+            int espacios = (50 - tituloCentrado.Length) / 2;
+            Console.WriteLine(tituloCentrado.PadLeft(espacios + tituloCentrado.Length));
+            Console.WriteLine(borde);
+            Console.WriteLine(); // Espacio extra
+        }
         public void MostrarMenuPrincipal()
         {
-            // Esto es es metodo MostrarMenuPrincipal de Presenter
-            Console.WriteLine(".::Bienvenidos al Facturador WEB de ARCA::.");
-            Console.WriteLine("1. Gestionar Clientes");
-            Console.WriteLine("2. Gestionar Facturas");
-            Console.WriteLine("3. Salir");
-            Console.WriteLine("Que opcion desea ingresar? ");
-            //......
+            MostrarTitulo("Bienvenidos al Facturador WEB de ARCA");
+            Console.WriteLine("   1. Gestionar Clientes");
+            Console.WriteLine("   2. Gestionar Facturas");
+            Console.WriteLine();
+            Console.WriteLine("   3. Salir");
+            Console.WriteLine("==================================================");
+            Console.Write("   Que opcion desea ingresar? -> ");
         }
 
         public void MostrarGestionarClientes()
         {
-            Console.WriteLine(".::Gestion de Clientes::.");
-            Console.WriteLine("1. Crear cliente");
-            Console.WriteLine("2. Modificar cliente");
-            Console.WriteLine("3. Eliminar cliente");
-            Console.WriteLine("4. Consultar cliente");
-            //en vez de salir del programa podriamos hacer que vuelva al menu principal o no?
-            Console.WriteLine("5. Salir del Programa");
+            MostrarTitulo("Gestión de Clientes");
+            Console.WriteLine("   1. Crear cliente");
+            Console.WriteLine("   2. Modificar cliente");
+            Console.WriteLine("   3. Eliminar cliente");
+            Console.WriteLine("   4. Consultar cliente");
+            Console.WriteLine();
+            Console.WriteLine("   5. Volver al Menú Principal");
+            Console.WriteLine("==================================================");
+            Console.Write("   Que opcion desea ingresar? -> ");
         }
 
         public void MostrarGestionarFacturas()
         {
-            Console.WriteLine(".::Gestion de Facturas::.");
-            Console.WriteLine("1. Emitir Factura");
-            Console.WriteLine("2. Consultar Factura");
-            //en vez de salir del programa podriamos hacer que vuelva al menu principal o no?
-            Console.WriteLine("3. Salir del Programa");
-
+            MostrarTitulo("Gestión de Facturas");
+            Console.WriteLine("   1. Emitir Factura");
+            Console.WriteLine("   2. Consultar Factura");
+            Console.WriteLine();
+            Console.WriteLine("   3. Volver al Menú Principal");
+            Console.WriteLine("==================================================");
+            Console.Write("   Que opcion desea ingresar? -> ");
         }
         public void MostrarMensaje(string v)
         {
@@ -56,6 +72,87 @@ namespace Parcial3pjxx.Generic
             Console.WriteLine($"CUIL/CUIT: {cliente.CuilCuit}");
             Console.WriteLine($"Razon Social: {cliente.RazonSocial}");
             Console.WriteLine($"Domicilio: {cliente.Domicilio}");
+        }
+
+        public void MostrarCrearCliente()
+        {
+            MostrarTitulo("Crear Nuevo Cliente");
+        }
+
+        public void MostrarModificarCliente()
+        {
+            MostrarTitulo("Modificar Cliente");
+        }
+
+        public void MostrarEliminarCliente()
+        {
+            MostrarTitulo("Eliminar Cliente");
+        }
+
+        public void MostrarConsultarCliente()
+        {
+            MostrarTitulo("Consultar Cliente");
+        }
+
+        public void MostrarClienteCreado(Cliente cliente)
+        {
+            Console.WriteLine();
+            Console.WriteLine("==================================================");
+            Console.WriteLine($"   ¡Cliente dado de alta con éxito!");
+            Console.WriteLine($"   ID Asignado: {cliente.IdCliente}");
+            Console.WriteLine("==================================================");
+            Console.WriteLine();
+            Console.Write("   Presione [Enter] para volver al menú...");
+        }
+
+        public void MostrarMenuModificarCliente(Cliente cliente)
+        {
+            // Usamos el método MostrarTitulo que ya creamos
+            MostrarTitulo("Datos del Cliente a Modificar");
+
+            // Mostramos los datos actuales del cliente
+            Console.WriteLine($"   ID:           {cliente.IdCliente}");
+            Console.WriteLine($"   Razón Social: {cliente.RazonSocial}");
+            Console.WriteLine($"   CUIT/CUIL:    {cliente.CuilCuit}");
+            Console.WriteLine($"   Domicilio:    {cliente.Domicilio}");
+            Console.WriteLine();
+            Console.WriteLine("   ¿Qué dato deseas cambiar?");
+            Console.WriteLine("   1. Domicilio");
+            Console.WriteLine("   2. Razón Social");
+            Console.WriteLine("   3. CUIT/CUIL");
+            Console.WriteLine("==================================================");
+            Console.Write("   Que opcion desea ingresar? -> ");
+        }
+
+        public void MostrarConsultaCliente(Cliente cliente)
+        {
+            // Usamos el método MostrarTitulo
+            MostrarTitulo("Consulta de Cliente");
+
+            // Mostramos los datos actuales del cliente
+            Console.WriteLine($"   ID:           {cliente.IdCliente}");
+            Console.WriteLine($"   Razón Social: {cliente.RazonSocial}");
+            Console.WriteLine($"   CUIT/CUIL:    {cliente.CuilCuit}");
+            Console.WriteLine($"   Domicilio:    {cliente.Domicilio}");
+            Console.WriteLine("==================================================");
+            Console.WriteLine();
+            Console.Write("   Presione [Enter] para volver al menú...");
+        }
+
+        public void MostrarConfirmacionEliminar(Cliente cliente)
+        {
+            // Usamos el método MostrarTitulo
+            MostrarTitulo("Datos del Cliente a Eliminar");
+
+            // Mostramos los datos actuales del cliente
+            Console.WriteLine($"   ID:           {cliente.IdCliente}");
+            Console.WriteLine($"   Razón Social: {cliente.RazonSocial}");
+            Console.WriteLine($"   CUIT/CUIL:    {cliente.CuilCuit}");
+            Console.WriteLine($"   Domicilio:    {cliente.Domicilio}");
+            Console.WriteLine();
+            Console.WriteLine("   !! ADVERTENCIA: Esta acción es permanente !!");
+            Console.WriteLine("==================================================");
+            Console.Write("   ¿Desea eliminar este cliente? (SI/NO) -> ");
         }
         public void MostrarFactura(Factura factura)
         {
@@ -94,9 +191,9 @@ namespace Parcial3pjxx.Generic
 
                     string desc = item.Descripcion.Length > 25 ? item.Descripcion.Substring(0, 25) : item.Descripcion.PadRight(25);
 
-                    string pUnit = item.ImporteUnitario.ToString("C").PadLeft(12); // "C" es formato Moneda
+                    string pUnit = $"$ {item.ImporteUnitario.ToString("N2")}".PadLeft(14); // "C" es formato Moneda
 
-                    string sub = item.SubTotal.ToString("C").PadLeft(12);
+                    string sub = $"$ {item.SubTotal.ToString("N2")}".PadLeft(14);
 
                     Console.WriteLine($"{cant}  {desc} {pUnit} {sub}");
                 }
@@ -108,7 +205,7 @@ namespace Parcial3pjxx.Generic
 
             Console.WriteLine(separador);
 
-            Console.WriteLine($"TOTAL: {factura.Total.ToString("C")}");
+            Console.WriteLine($"TOTAL: $ {factura.Total.ToString("N2")}");
             Console.WriteLine(separador); 
         }
     }
