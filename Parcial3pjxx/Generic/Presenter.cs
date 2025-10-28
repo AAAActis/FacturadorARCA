@@ -51,8 +51,20 @@ namespace Parcial3pjxx.Generic
             MostrarTitulo("Gestión de Facturas");
             Console.WriteLine("   1. Emitir Factura");
             Console.WriteLine("   2. Consultar Factura");
+            Console.WriteLine("   3. Listar Facturas");
             Console.WriteLine();
-            Console.WriteLine("   3. Volver al Menú Principal");
+            Console.WriteLine("   4. Volver al Menú Principal");
+            Console.WriteLine("==================================================");
+            Console.Write("   Que opcion desea ingresar? -> ");
+        }
+
+        public void MostrarSubMenuListarFacturas()
+        {
+            MostrarTitulo("Listar Facturas");
+            Console.WriteLine("   1. Listar todas las facturas");
+            Console.WriteLine("   2. Listar facturas por cliente");
+            Console.WriteLine();
+            Console.WriteLine("   3. Volver al Menú de Gestión de Facturas");
             Console.WriteLine("==================================================");
             Console.Write("   Que opcion desea ingresar? -> ");
         }
@@ -154,6 +166,45 @@ namespace Parcial3pjxx.Generic
             Console.WriteLine("==================================================");
             Console.Write("   ¿Desea eliminar este cliente? (SI/NO) -> ");
         }
+
+        public void MostrarFacturaSimple(Factura factura)
+        {
+            string id = $"ID: {factura.IdFactura}".PadRight(10);
+            string Fecha = $"Fecha: {factura.Fecha:dd/MM/yyyy}".PadRight(20);
+
+            string cliente = $"Cliente: (N/A)".PadRight(30);
+            if (factura.Cliente != null)
+            {
+                cliente = $"Cliente: {factura.Cliente.RazonSocial}".PadRight(30);
+            }
+
+            string total = $"Total: $ {factura.Total:N2}";
+
+            Console.WriteLine($"{id} {Fecha} {cliente} {total}");
+        }
+
+        public void MostrarListaFacturas(List<Factura> facturas)
+        {
+
+            if (facturas == null || !facturas.Any())
+            {
+                Console.WriteLine("No hay facturas para mostrar.");
+            }
+            else
+            {
+                foreach (var factura in facturas)
+                {
+                    MostrarFacturaSimple(factura);
+                }
+            }
+
+            Console.WriteLine("==================================================");
+            Console.WriteLine();
+            Console.Write("   Presione [Enter] para volver al menú...");
+        }
+
+        
+            
         public void MostrarFactura(Factura factura)
         {
             string separador = "---------------------------------------------";

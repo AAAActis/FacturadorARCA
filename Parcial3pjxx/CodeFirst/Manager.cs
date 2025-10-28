@@ -279,40 +279,129 @@ namespace Parcial3pjxx.CodeFirst
             presenter.MostrarConsultaCliente(cte);
             reader.LeerCadena();
         }
-        
+
 
 
         //----------------------------------- LOGICA DE FACTURA -------------------------------------
         //aca literal copie y pegue lo que hiciste en lo de gestionar cliente -- si pq no servis ni para bosta por eso
         public void GestionarFacturas()
         {
-            presenter.MostrarGestionarFacturas();
-
-            bool band = true;
-            int opc = 0;
-
+            // movi el clear aca para que no se limpie al volver del submenú esto me lo tiro gemainai
+            bool repetir = true;
             do
             {
-                try
-                {
-                    opc = int.Parse(Console.ReadLine());
-                    if (opc > 3 || opc < 1)
-                    {
-                        band = true;
-                        Console.WriteLine("Opcion mal ingresada");
-                    }
-                    else { band = false; }
-                }
-                catch (Exception ex) { Console.WriteLine(ex.Message); }
+                Console.Clear();
+                presenter.MostrarGestionarFacturas(); 
 
-            } while (band);
-            switch (opc)
+                bool band = true;
+                int opc = 0;
+
+                do
+                {
+                    try
+                    {
+                        opc = int.Parse(Console.ReadLine());
+                        if (opc > 4 || opc < 1)
+                        {
+                            band = true;
+                            Console.WriteLine("Opcion mal ingresada");
+                        }
+                        else { band = false; }
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+                } while (band);
+                switch (opc)
+                {
+                    case 1: EmitirFactura(); break;
+                    case 2: ConsultarFactura(); break;
+                    case 3: MenuListarFacturas(); break;
+                    case 4:
+                        repetir = false;
+                        break;
+                }
+
+            } while (repetir); // Loop para mantenernos en "Gestionar Facturas"
+        }
+
+        public void MenuListarFacturas()
+        {
+            bool repetir = true;
+            while (repetir)
             {
-                case 1: EmitirFactura(); break;
-                case 2: ConsultarFactura(); break;
-                case 3: Console.WriteLine("Ha salido del programa"); break;
+                Console.Clear();
+                presenter.MostrarSubMenuListarFacturas();
+
+                int opc = reader.LeerEntero();
+                Console.Clear();
+
+                switch (opc)
+                {
+                    case 1:
+                        ListarTodasFacturas();
+                        break;
+                    case 2:
+                        ListarFacturasPorCliente();
+                        break;
+                    case 3:
+                        repetir = false; // Volver al menú anterior 
+                        break;
+                    default:
+                        presenter.MostrarMensaje("Opción inválida. Intente nuevamente.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+
+        private void ListarTodasFacturas()
+        {
+            presenter.MostrarTitulo("Listado de Todas las Facturas");
+            var facturas = context.Facturas
+                .Include(f => f.Cliente)
+                .OrderByDescending(f => f.Fecha)
+                .ToList();
+
+            presenter.MostrarListaFacturas(facturas);
+            Console.WriteLine("\nPresione Enter para continuar...");
+            reader.LeerCadena();
+        }
+        
+        private void ListarFacturasPorCliente()
+        {
+            presenter.MostrarTitulo("Listado de Facturas por Cliente");
+            presenter.MostrarMensajeAlLado("Ingrese el ID del Cliente: ");
+            int idCliente = reader.LeerEntero();
+
+            var cliente = context.Clientes.Find(idCliente);
+            if (cliente == null)
+            {
+                presenter.MostrarMensaje("Cliente no encontrado!");
+                Console.WriteLine("\nPresione Enter para continuar...");
+                reader.LeerCadena();
+                return;
             }
 
+            presenter.MostrarTitulo($"Facturas de: {cliente.RazonSocial} (ID: {cliente.IdCliente})");
+
+            var facturas = context.Facturas
+                .Where(f => f.IdCliente == idCliente)
+                .Include(f => f.Cliente)
+                .Include(f => f.Items)
+                .OrderByDescending(f => f.Fecha)
+                .ToList();
+
+            if (facturas.Count == 0)
+            {
+                presenter.MostrarMensaje("No se encontraron facturas para el cliente especificado.");
+            }
+            else
+            {
+                presenter.MostrarListaFacturas(facturas);
+            }
+
+            Console.WriteLine("\nPresione Enter para continuar...");
+            reader.LeerCadena();
         }
 
         //METODOS FACTURA
