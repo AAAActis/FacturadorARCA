@@ -5018,23 +5018,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Users\\Santi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\ParcialTresPLA-2.0\\Parcial3pjxx\\Parcial3pjxx.csproj",
+      "projectUniqueName": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Parcial3pjxx.csproj",
       "projectName": "Parcial3pjxx",
-      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\ParcialTresPLA-2.0\\Parcial3pjxx\\Parcial3pjxx.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\ParcialTresPLA-2.0\\Parcial3pjxx\\obj\\",
+      "projectPath": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Parcial3pjxx.csproj",
+      "packagesPath": "C:\\Users\\Santi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5116,7 +5116,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

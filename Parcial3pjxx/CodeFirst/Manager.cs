@@ -20,10 +20,8 @@ namespace Parcial3pjxx.CodeFirst
             this.presenter = presenter;
             this.reader = reader;
         }
-
         public void Iniciar()
         {
-            bool band = true;
             bool repetir = true;
             int opc = 0;
 
@@ -32,36 +30,47 @@ namespace Parcial3pjxx.CodeFirst
                 Console.Clear();
                 presenter.MostrarMenuPrincipal();
 
-                do
+                try
                 {
-                    try
+                    string input = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(input))
                     {
-                        opc = int.Parse(Console.ReadLine());
-                        Console.Clear();
-                        if (opc > 3 || opc < 1)
-                        {
-                            band = true;
-                            Console.WriteLine("Opcion mal ingresada");
-                            presenter.MostrarMenuPrincipal();
-                        }
-                        else { band = false; }
+                        opc = int.Parse(input);
                     }
-                    catch (Exception ex) { Console.WriteLine("Opcion mal ingresada. Intente de nuevo!"); }
+                    else
+                    {
+                        opc = -1;
+                    }
 
-                } while (band);
-
-
-                switch (opc)
+                    switch (opc)
+                    {
+                        case 1:
+                            GestionarClientes();
+                            break;
+                        case 2:
+                            GestionarFacturas();
+                            break;
+                        case 3:
+                            presenter.MostrarMensaje("Ha salido del programa!");
+                            repetir = false;
+                            System.Threading.Thread.Sleep(1000);
+                            break;
+                        default:
+                            presenter.MostrarMensaje("\n   Opción inválida. Presione Enter para reintentar.");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                catch (FormatException)
                 {
-                    case 1: GestionarClientes(); break;
-                    case 2: GestionarFacturas(); break;
-                    case 3:
-                        presenter.MostrarMensaje("Ha salido del programa!");
-                        repetir = false;
-                        break;
-                    default:
-                        presenter.MostrarMensaje("Opción inválida. Intente nuevamente.");
-                        break;
+                    presenter.MostrarMensaje("\n   Entrada no válida (no es un número). Presione Enter para reintentar.");
+                    Console.ReadKey();
+                }
+                catch (Exception ex)
+                {
+                    presenter.MostrarMensaje($"\n   Error inesperado: {ex.Message}. Presione Enter.");
+                    Console.ReadKey();
                 }
 
             }
@@ -71,37 +80,51 @@ namespace Parcial3pjxx.CodeFirst
         // ------------------------------ LOGICA DE CLIENTES -------------------------------------
         public void GestionarClientes()
         {
-            Console.Clear();
-            presenter.MostrarGestionarClientes();
-
-            bool band = true;
-            int opc = 0;
-
+            bool repetir = true;
             do
-            {    
+            {
+                Console.Clear();
+                presenter.MostrarGestionarClientes();
+                int opc = 0;
+
                 try
                 {
-                    opc = int.Parse(Console.ReadLine());
-                    if (opc > 5 || opc < 1)
+                    string input = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(input))
                     {
-                        band = true;
-                        Console.WriteLine("Opcion mal ingresada. Intente de nuevo!");
+                        opc = int.Parse(input);
                     }
-                    else { band = false; }
+                    else
+                    {
+                        opc = -1;
+                    }
+
+                    switch (opc)
+                    {
+                        case 1: CrearCliente(); break;
+                        case 2: ModificarCliente(); break;
+                        case 3: EliminarCliente(); break;
+                        case 4: ConsultarCliente(); break;
+                        case 5:
+                            repetir = false;
+                            break;
+                        default:
+                            presenter.MostrarMensaje("\n   Opción inválida. Presione Enter para reintentar.");
+                            Console.ReadKey();
+                            break;
+                    }
                 }
-                catch (Exception ex) { Console.WriteLine("Opcion mal ingresada. Intente de nuevo!"); }
-
-            } while (band);
-            switch (opc)
-            {
-                case 1: CrearCliente(); break;
-                case 2: ModificarCliente(); break;
-                case 3: EliminarCliente(); break;
-                case 4: ConsultarCliente(); break;
-                case 5: return;
-
-            }
-
+                catch (FormatException)
+                {
+                    presenter.MostrarMensaje("\n   Entrada no válida (no es un número). Presione Enter para reintentar.");
+                    Console.ReadKey();
+                }
+                catch (Exception ex)
+                {
+                    presenter.MostrarMensaje($"\n   Error inesperado: {ex.Message}. Presione Enter.");
+                    Console.ReadKey();
+                }
+            } while (repetir);
         }
 
 
@@ -153,14 +176,15 @@ namespace Parcial3pjxx.CodeFirst
                 reader.LeerCadena();
             }
         }
-        
+
 
         private void ModificarCliente()
         {
             Console.Clear();
-            presenter.MostrarModificarCliente();
+            presenter.MostrarTitulo("Modificar Cliente");
 
             presenter.MostrarMensajeAlLado("Ingrese el ID del Cliente a Modificar: ");
+            
             int id = reader.LeerEntero();
             var cte = context.Clientes.Find(id);
             if (cte == null)
@@ -169,13 +193,13 @@ namespace Parcial3pjxx.CodeFirst
                 return;
             }
             presenter.MostrarMenuModificarCliente(cte);
-                if (cte == null)
-                {
-                    presenter.MostrarMensaje("Cliente no encontrado!");
-                    Console.WriteLine($"Pulse ENTER para continuar");
-                    Console.ReadKey();
+            if (cte == null)
+            {
+                presenter.MostrarMensaje("Cliente no encontrado!");
+                Console.WriteLine($"Pulse ENTER para continuar");
+                Console.ReadKey();
                 return;
-                }
+            }
 
             bool repetirModificacion = true;
             do
@@ -215,23 +239,23 @@ namespace Parcial3pjxx.CodeFirst
                 {
                     repetirModificacion = true;
                     Console.Clear();
-                } else
+                }
+                else
                 {
                     repetirModificacion = false;
                     Console.Clear();
                 }
 
             } while (repetirModificacion);
-                
 
-                context.SaveChanges();
-                presenter.MostrarMensaje("Cliente actualizado con exito!");
-                Console.WriteLine($"Pulse ENTER para continuar");
-                Console.ReadKey();
+            context.SaveChanges();
+            presenter.MostrarMensaje("Cliente actualizado con exito!");
+            Console.WriteLine($"Pulse ENTER para continuar");
+            Console.ReadKey();
         }
         private void EliminarCliente()
         {
-            presenter.MostrarEliminarCliente();
+            presenter.MostrarTitulo("Eliminar Cliente");
             presenter.MostrarMensajeAlLado("ID del cliente a eliminar: ");
             int id = reader.LeerEntero();
             var cte = context.Clientes.Find(id);
@@ -267,7 +291,7 @@ namespace Parcial3pjxx.CodeFirst
         }
         private void ConsultarCliente()
         {
-            presenter.MostrarConsultarCliente();
+            presenter.MostrarTitulo("Consultar Cliente");
             presenter.MostrarMensajeAlLado("ID del cliente a consultar: ");
             int id = reader.LeerEntero();
             var cte = context.Clientes.Find(id);
@@ -291,37 +315,46 @@ namespace Parcial3pjxx.CodeFirst
             do
             {
                 Console.Clear();
-                presenter.MostrarGestionarFacturas(); 
-
-                bool band = true;
+                presenter.MostrarGestionarFacturas();
                 int opc = 0;
 
-                do
+                try
                 {
-                    try
+                    string input = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(input))
                     {
-                        opc = int.Parse(Console.ReadLine());
-                        if (opc > 4 || opc < 1)
-                        {
-                            band = true;
-                            Console.WriteLine("Opcion mal ingresada");
-                        }
-                        else { band = false; }
+                        opc = int.Parse(input);
                     }
-                    catch (Exception ex) { Console.WriteLine("Opcion mal ingresada. Intente de nuevo!"); }
+                    else
+                    {
+                        opc = -1;
+                    }
 
-                } while (band);
-                switch (opc)
-                {
-                    case 1: EmitirFactura(); break;
-                    case 2: ConsultarFactura(); break;
-                    case 3: MenuListarFacturas(); break;
-                    case 4:
-                        repetir = false;
-                        break;
+                    switch (opc)
+                    {
+                        case 1: EmitirFactura(); break;
+                        case 2: ConsultarFactura(); break;
+                        case 3: MenuListarFacturas(); break;
+                        case 4:
+                            repetir = false;
+                            break;
+                        default:
+                            presenter.MostrarMensaje("\n   Opción inválida. Presione Enter para reintentar.");
+                            Console.ReadKey();
+                            break;
+                    }
                 }
-
-            } while (repetir); // Loop para mantenernos en "Gestionar Facturas"
+                catch (FormatException)
+                {
+                    presenter.MostrarMensaje("\n   Entrada no válida (no es un número). Presione Enter para reintentar.");
+                    Console.ReadKey();
+                }
+                catch (Exception ex)
+                {
+                    presenter.MostrarMensaje($"\n   Error inesperado: {ex.Message}. Presione Enter.");
+                    Console.ReadKey();
+                }
+            } while (repetir);
         }
 
         public void MenuListarFacturas()
@@ -331,25 +364,43 @@ namespace Parcial3pjxx.CodeFirst
             {
                 Console.Clear();
                 presenter.MostrarSubMenuListarFacturas();
+                int opc = 0;
 
-                int opc = reader.LeerEntero();
-                Console.Clear();
-
-                switch (opc)
+                try
                 {
-                    case 1:
-                        ListarTodasFacturas();
-                        break;
-                    case 2:
-                        ListarFacturasPorCliente();
-                        break;
-                    case 3:
-                        repetir = false; // Volver al menú anterior 
-                        break;
-                    default:
-                        presenter.MostrarMensaje("Opción inválida. Intente nuevamente.");
-                        Console.ReadKey();
-                        break;
+                    string input = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(input))
+                    {
+                        opc = int.Parse(input);
+                    }
+                    else
+                    {
+                        opc = -1;
+                    }
+
+                    Console.Clear();
+
+                    switch (opc)
+                    {
+                        case 1:
+                            ListarTodasFacturas();
+                            break;
+                        case 2:
+                            ListarFacturasPorCliente();
+                            break;
+                        case 3:
+                            repetir = false;
+                            break;
+                        default:
+                            presenter.MostrarMensaje("Opción inválida. Intente nuevamente.");
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    presenter.MostrarMensaje("\n   Entrada no válida (no es un número). Presione Enter para reintentar.");
+                    Console.ReadKey();
                 }
             }
         }
@@ -366,7 +417,7 @@ namespace Parcial3pjxx.CodeFirst
             Console.WriteLine("\nPresione Enter para continuar...");
             reader.LeerCadena();
         }
-        
+
         private void ListarFacturasPorCliente()
         {
             presenter.MostrarTitulo("Listado de Facturas por Cliente");
@@ -407,114 +458,122 @@ namespace Parcial3pjxx.CodeFirst
         //METODOS FACTURA
         public void EmitirFactura()
         {
-                Console.Clear();
+
+            Console.Clear();
             presenter.MostrarTitulo("Emitir Factura");
-            presenter.MostrarMensajeAlLado("Tipo de Factura a Emitir (A / B / C): ");
-                char tipo = reader.LeerChar();
-                presenter.MostrarMensaje("");
-                presenter.MostrarMensajeAlLado("Cliente: ");
-                string razon = reader.LeerCadena();
 
-                //JUJU
-                var cte = context.Clientes.FirstOrDefault(c => c.RazonSocial == razon);
-                if (cte == null)
-                {
-                    presenter.MostrarMensaje("Cliente no encontrado. Asegurese de registrarlo antes!");
-                    Console.WriteLine($"Pulse ENTER para continuar");
-                    Console.ReadKey();
+            if (!context.Clientes.Any())
+            {
+                presenter.MostrarMensaje("\n   ERROR: No hay clientes registrados.");
+                presenter.MostrarMensaje("   Debe crear un cliente antes de poder emitir una factura.");
+                presenter.MostrarMensaje("\n   Presione [Enter] para volver al menú...");
+                reader.LeerCadena();
                 return;
-                }
+            }
 
-                // Obtener ultimo numero para ese tipo
-                int ultimoNumero = context.Facturas
-                    .Where(f => f.Tipo == tipo)
-                    .OrderByDescending(f => f.Numero)
-                    .Select(f => f.Numero)
-                    .FirstOrDefault();
+            presenter.MostrarMensajeAlLado("Tipo de Factura a Emitir (A / B / C): ");
+            char tipo = reader.LeerChar();
+            presenter.MostrarMensaje("");
+            presenter.MostrarMensajeAlLado("Cliente (Razón Social): ");
+            string razon = reader.LeerCadena();
 
-                Factura factura = new Factura
-                {
-                    Tipo = tipo,
-                    Numero = ultimoNumero + 1,
-                    Fecha = DateTime.Now,
-                    IdCliente = cte.IdCliente,
-                    Cliente = cte
-                };
-
-                presenter.MostrarFactura(factura);
-                presenter.MostrarMensaje("\n");
+            var cte = context.Clientes.FirstOrDefault(c => c.RazonSocial == razon);
+            if (cte == null)
+            {
+                presenter.MostrarMensaje("Cliente no encontrado. Asegurese de registrarlo antes!");
                 Console.WriteLine($"Pulse ENTER para continuar");
                 Console.ReadKey();
-                Console.Clear();
+                return;
+            }
+
+            int ultimoNumero = context.Facturas
+                .Where(f => f.Tipo == tipo)
+                .OrderByDescending(f => f.Numero)
+                .Select(f => f.Numero)
+                .FirstOrDefault();
+
+            Factura factura = new Factura
+            {
+                Tipo = tipo,
+                Numero = ultimoNumero + 1,
+                Fecha = DateTime.Now,
+                IdCliente = cte.IdCliente,
+                Cliente = cte
+            };
+
+            presenter.MostrarFactura(factura);
+            presenter.MostrarMensaje("\n");
+            Console.WriteLine($"Pulse ENTER para continuar");
+            Console.ReadKey();
+            Console.Clear();
 
             bool seguirAgregando = true;
-                do
-                {
-                    presenter.MostrarMensaje(".::Ingreso de Items::.");
-                    Item nuevoItem = SolicitarItem();
-                    factura.Items.Add(nuevoItem);
+            do
+            {
+                presenter.MostrarTitulo(".::Ingreso de Items::.");
+                Item nuevoItem = SolicitarItem();
+                factura.Items.Add(nuevoItem);
 
-                    presenter.MostrarMensaje("Desea ingresar otro item? (SI/NO)");
-                    string opc = reader.LeerCadena().ToUpper().Trim();
-                    seguirAgregando = (opc == "SI");
-                    Console.Clear();
-
-                } while (seguirAgregando);
-                factura.ImporteTotal = factura.Total;
+                presenter.MostrarMensaje("Desea ingresar otro item? (SI/NO)");
+                string opc = reader.LeerCadena().ToUpper().Trim();
+                seguirAgregando = (opc == "SI");
                 Console.Clear();
-                presenter.MostrarMensaje("--- VISTA PREVIA DE LA FACTURA ---");
-                presenter.MostrarFactura(factura);
 
-                presenter.MostrarMensaje("Desea emitir la factura? (Si / NO):");
-                string confirmar = reader.LeerCadena().ToUpper().Trim();
 
-                if (confirmar == "SI")
+            } while (seguirAgregando);
+            factura.ImporteTotal = factura.Total;
+            Console.Clear();
+            presenter.MostrarMensaje("--- VISTA PREVIA DE LA FACTURA ---");
+            presenter.MostrarFactura(factura);
+
+            presenter.MostrarMensaje("Desea emitir la factura? (Si / NO):");
+            string confirmar = reader.LeerCadena().ToUpper().Trim();
+
+            if (confirmar == "SI")
+            {
+                try
                 {
-                    try
-                    {
-                        // EF es suficientemente inteligente para guardar la factura
-                        // y todos sus 'Items' asociados en una sola transacción.
-                        context.Facturas.Add(factura);
-                        context.SaveChanges();
-                        presenter.MostrarMensaje("¡Factura emitida con éxito!");
-                        Console.WriteLine($"Pulse ENTER para continuar");
-                        Console.ReadKey();
-                }
-                    catch (Exception ex)
-                    {
-                        presenter.MostrarMensaje($"Ocurrió un error al guardar: {ex.Message}");
-                        Console.WriteLine($"Pulse ENTER para continuar");
-                        Console.ReadKey();
-                }
-                }
-                else
-                {
-                    presenter.MostrarMensaje("Operación cancelada.");
+                    context.Facturas.Add(factura);
+                    context.SaveChanges();
+                    presenter.MostrarMensaje("¡Factura emitida con éxito!");
                     Console.WriteLine($"Pulse ENTER para continuar");
                     Console.ReadKey();
+                }
+                catch (Exception ex)
+                {
+                    presenter.MostrarMensaje($"Ocurrió un error al guardar: {ex.Message}");
+                    Console.WriteLine($"Pulse ENTER para continuar");
+                    Console.ReadKey();
+                }
+            }
+            else
+            {
+                presenter.MostrarMensaje("Operación cancelada.");
+                Console.WriteLine($"Pulse ENTER para continuar");
+                Console.ReadKey();
             }
         }
         public void ConsultarFactura()
         {
-                Console.Clear();
+            Console.Clear();
             presenter.MostrarTitulo("Consulta Factura");
-                presenter.MostrarMensajeAlLado("ID de la Factura a Consultar: ");
-                int id = reader.LeerEntero();
+            presenter.MostrarMensajeAlLado("ID de la Factura a Consultar: ");
+            int id = reader.LeerEntero();
 
-                var factura = context.Facturas
-                     .Include(f => f.Cliente)
-                     .Include(f => f.Items)
-                     .FirstOrDefault(f => f.IdFactura == id);
-                if (factura == null)
-                {
-                    presenter.MostrarMensaje("Factura no encontrada!");
-                    Console.WriteLine($"Pulse ENTER para continuar");
-                    Console.ReadKey();
-                return;
-                }
-                presenter.MostrarFactura(factura);
+            var factura = context.Facturas
+                 .Include(f => f.Cliente)
+                 .Include(f => f.Items)
+                 .FirstOrDefault(f => f.IdFactura == id);
+            if (factura == null)
+            {
+                presenter.MostrarMensaje("Factura no encontrada!");
                 Console.WriteLine($"Pulse ENTER para continuar");
                 Console.ReadKey();
+                return;
+            }
+            presenter.MostrarFactura(factura);
+            Console.WriteLine($"Pulse ENTER para continuar");
+            Console.ReadKey();
 
         }
 
