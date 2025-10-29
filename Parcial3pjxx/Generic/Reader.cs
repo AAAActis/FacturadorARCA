@@ -21,7 +21,7 @@ namespace Parcial3pjxx.Generic
                     band = false;
 
                 }
-                catch (Exception e) { Console.WriteLine(e.Message); band = true; }
+                catch (Exception e) { Console.WriteLine("Asegurese de ingresar una opcion correcta!"); band = true; }
             } while (band);
             return i;
         }
@@ -38,7 +38,7 @@ namespace Parcial3pjxx.Generic
                     band = false;
 
                 }
-                catch (Exception e) { Console.WriteLine(e.Message); band = true; }            
+                catch (Exception e) { Console.WriteLine("Asegurese de ingresar una opcion correcta!"); band = true; }            
             } while (band);
             return str;
         }
@@ -55,7 +55,7 @@ namespace Parcial3pjxx.Generic
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error: {e.Message}. Intente de nuevo.");
+                    Console.WriteLine($"Error: \"Asegurese de ingresar una opcion correcta!\". Intente de nuevo.");
                     band = true;
                 }
             } while (band);
@@ -76,7 +76,7 @@ namespace Parcial3pjxx.Generic
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error: {e.Message}. Intente de nuevo.");
+                    Console.WriteLine($"Error: \"Asegurese de ingresar una opcion correcta!\". Intente de nuevo.");
                     band = true;
                 }
             } while (band);
@@ -94,7 +94,7 @@ namespace Parcial3pjxx.Generic
                     c = char.Parse(Console.ReadLine());
                     band = false;
                 }
-                catch (Exception e) { Console.WriteLine(e.Message); band = true; }    
+                catch (Exception e) { Console.WriteLine("Asegurese de ingresar una opcion correcta!"); band = true; }    
             } while (band);
             return c;
         }
@@ -121,7 +121,7 @@ namespace Parcial3pjxx.Generic
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error: {e.Message}");
+                    Console.WriteLine($"Error: \"Asegurese de ingresar una opcion correcta!\"");
                     band = true;
                 }
 

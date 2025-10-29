@@ -42,10 +42,11 @@ namespace Parcial3pjxx.CodeFirst
                         {
                             band = true;
                             Console.WriteLine("Opcion mal ingresada");
+                            presenter.MostrarMenuPrincipal();
                         }
                         else { band = false; }
                     }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    catch (Exception ex) { Console.WriteLine("Opcion mal ingresada. Intente de nuevo!"); }
 
                 } while (band);
 
@@ -55,7 +56,7 @@ namespace Parcial3pjxx.CodeFirst
                     case 1: GestionarClientes(); break;
                     case 2: GestionarFacturas(); break;
                     case 3:
-                        presenter.MostrarMensaje("Ha salido del programa");
+                        presenter.MostrarMensaje("Ha salido del programa!");
                         repetir = false;
                         break;
                     default:
@@ -84,11 +85,11 @@ namespace Parcial3pjxx.CodeFirst
                     if (opc > 5 || opc < 1)
                     {
                         band = true;
-                        Console.WriteLine("Opcion mal ingresada");
+                        Console.WriteLine("Opcion mal ingresada. Intente de nuevo!");
                     }
                     else { band = false; }
                 }
-                catch (Exception ex) { Console.WriteLine(ex.Message); }
+                catch (Exception ex) { Console.WriteLine("Opcion mal ingresada. Intente de nuevo!"); }
 
             } while (band);
             switch (opc)
@@ -273,6 +274,7 @@ namespace Parcial3pjxx.CodeFirst
             if (cte == null)
             {
                 presenter.MostrarMensaje("Cliente no encontrado!");
+                presenter.MostrarMensaje("\nPresione [Enter] para volver al menú...");
                 reader.LeerCadena();
                 return;
             }
@@ -283,10 +285,8 @@ namespace Parcial3pjxx.CodeFirst
 
 
         //----------------------------------- LOGICA DE FACTURA -------------------------------------
-        //aca literal copie y pegue lo que hiciste en lo de gestionar cliente -- si pq no servis ni para bosta por eso
         public void GestionarFacturas()
         {
-            // movi el clear aca para que no se limpie al volver del submenú esto me lo tiro gemainai
             bool repetir = true;
             do
             {
@@ -308,7 +308,7 @@ namespace Parcial3pjxx.CodeFirst
                         }
                         else { band = false; }
                     }
-                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    catch (Exception ex) { Console.WriteLine("Opcion mal ingresada. Intente de nuevo!"); }
 
                 } while (band);
                 switch (opc)
@@ -457,6 +457,7 @@ namespace Parcial3pjxx.CodeFirst
                     presenter.MostrarMensaje("Desea ingresar otro item? (SI/NO)");
                     string opc = reader.LeerCadena().ToUpper().Trim();
                     seguirAgregando = (opc == "SI");
+                    Console.Clear();
 
                 } while (seguirAgregando);
                 factura.ImporteTotal = factura.Total;

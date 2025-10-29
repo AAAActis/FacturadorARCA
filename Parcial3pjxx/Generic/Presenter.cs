@@ -14,7 +14,7 @@ namespace Parcial3pjxx.Generic
             string borde = "==================================================";
             string tituloCentrado = $"-- {titulo} --";
 
-            Console.Clear(); // ¡Importante! Limpia la pantalla
+            Console.Clear();
             Console.WriteLine(borde);
             // Centramos el título (asumiendo un ancho de 50)
             int espacios = (50 - tituloCentrado.Length) / 2;
@@ -119,7 +119,7 @@ namespace Parcial3pjxx.Generic
 
         public void MostrarMenuModificarCliente(Cliente cliente)
         {
-            // Usamos el método MostrarTitulo que ya creamos
+            // Usamos el metodo MostrarTitulo que ya creamos
             MostrarTitulo("Datos del Cliente a Modificar");
 
             // Mostramos los datos actuales del cliente
@@ -138,7 +138,7 @@ namespace Parcial3pjxx.Generic
 
         public void MostrarConsultaCliente(Cliente cliente)
         {
-            // Usamos el método MostrarTitulo
+            // Usamos el metodo MostrarTitulo
             MostrarTitulo("Consulta de Cliente");
 
             // Mostramos los datos actuales del cliente
@@ -153,7 +153,7 @@ namespace Parcial3pjxx.Generic
 
         public void MostrarConfirmacionEliminar(Cliente cliente)
         {
-            // Usamos el método MostrarTitulo
+            // Usamos el metodo MostrarTitulo
             MostrarTitulo("Datos del Cliente a Eliminar");
 
             // Mostramos los datos actuales del cliente
