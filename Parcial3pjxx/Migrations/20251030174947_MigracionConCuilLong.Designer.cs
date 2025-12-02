@@ -12,8 +12,8 @@ using Parcial3pjxx.CodeFirst;
 namespace Parcial3pjxx.Migrations
 {
     [DbContext(typeof(FacturadorDbContext))]
-    [Migration("20251027194027_MigracionInicialCorrecta")]
-    partial class MigracionInicialCorrecta
+    [Migration("20251030174947_MigracionConCuilLong")]
+    partial class MigracionConCuilLong
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,10 +33,9 @@ namespace Parcial3pjxx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"));
 
-                    b.Property<string>("CuilCuit")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<long>("CuilCuit")
+                        .HasMaxLength(11)
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Domicilio")
                         .IsRequired()

@@ -9,6 +9,7 @@ namespace Parcial3pjxx.Generic
 {
     public class Reader
     {
+       
         public int LeerEntero()
         {
             int i = 0;
@@ -24,6 +25,23 @@ namespace Parcial3pjxx.Generic
                 catch (Exception e) { Console.WriteLine("Asegurese de ingresar una opcion correcta!"); band = true; }
             } while (band);
             return i;
+        }
+
+        public long LeerLong()
+        {
+            long l = 0;
+            bool band;
+            do
+            {
+                try
+                {
+                    l = long.Parse(Console.ReadLine());
+                    band = false;
+
+                }
+                catch (Exception e) { Console.WriteLine("Asegurese de ingresar una opcion correcta!"); band = true; }
+            } while (band);
+            return l;
         }
         public string LeerCadena()
         {

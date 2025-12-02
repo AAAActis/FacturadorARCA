@@ -14,8 +14,8 @@ namespace Parcial3pjxx.CodeFirst
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCliente { get; set; }
         [Required]
-        [MaxLength(100)]
-        public string CuilCuit { get; set; }
+        [MaxLength(11)]
+        public long CuilCuit { get; set; }
         [Required]
         [MaxLength(200)]
         public string RazonSocial { get; set; }
@@ -29,7 +29,7 @@ namespace Parcial3pjxx.CodeFirst
 
         }
 
-        public Cliente(string cuil, string razon, string domicilio)
+        public Cliente(long cuil, string razon, string domicilio)
         {
             CuilCuit = cuil;
             RazonSocial = razon;

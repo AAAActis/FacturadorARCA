@@ -30,10 +30,9 @@ namespace Parcial3pjxx.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"));
 
-                    b.Property<string>("CuilCuit")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<long>("CuilCuit")
+                        .HasMaxLength(11)
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Domicilio")
                         .IsRequired()

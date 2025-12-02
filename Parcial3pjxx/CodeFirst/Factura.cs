@@ -37,5 +37,3 @@ namespace Parcial3pjxx.CodeFirst
         public decimal Total => Items.Sum(i => i.SubTotal);
     }
 }
-
-

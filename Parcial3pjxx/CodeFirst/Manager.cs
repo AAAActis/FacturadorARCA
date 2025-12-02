@@ -141,7 +141,7 @@ namespace Parcial3pjxx.CodeFirst
             cte.RazonSocial = reader.LeerCadena();
 
             presenter.MostrarMensajeAlLado("   Ingrese el CUIL / CUIT del cliente: ");
-            cte.CuilCuit = reader.LeerCadena();
+            cte.CuilCuit = reader.LeerLong();
 
             presenter.MostrarMensajeAlLado("   Ingrese el domicilio del cliente: ");
             cte.Domicilio = reader.LeerCadena();
@@ -184,7 +184,7 @@ namespace Parcial3pjxx.CodeFirst
             presenter.MostrarTitulo("Modificar Cliente");
 
             presenter.MostrarMensajeAlLado("Ingrese el ID del Cliente a Modificar: ");
-            
+
             int id = reader.LeerEntero();
             var cte = context.Clientes.Find(id);
             if (cte == null)
@@ -227,7 +227,7 @@ namespace Parcial3pjxx.CodeFirst
                         presenter.MostrarTitulo("Modificacion CUIT/CUIL");
                         presenter.MostrarMensaje($"CUIT/CUIL actual ({cte.CuilCuit})");
                         presenter.MostrarMensajeAlLado($"Ingrese el nuevo: ");
-                        string cuil = reader.LeerCadena();
+                        long cuil = reader.LeerLong();
                         cte.CuilCuit = cuil;
                         break;
                 }
@@ -258,7 +258,10 @@ namespace Parcial3pjxx.CodeFirst
             presenter.MostrarTitulo("Eliminar Cliente");
             presenter.MostrarMensajeAlLado("ID del cliente a eliminar: ");
             int id = reader.LeerEntero();
-            var cte = context.Clientes.Find(id);
+            var cte = context.Clientes
+            .Include(c => c.Facturas)
+            .FirstOrDefault(c => c.IdCliente == id);
+
             if (cte == null)
             {
                 presenter.MostrarMensaje("Cliente no encontrado!");
@@ -266,26 +269,38 @@ namespace Parcial3pjxx.CodeFirst
                 return;
             }
 
-            presenter.MostrarConfirmacionEliminar(cte);
-            string confirmacion = reader.LeerCadena().ToUpper().Trim();
-
-            if (confirmacion == "SI")
+            if (cte.Facturas != null && cte.Facturas.Any())
             {
-                try
-                {
-                    context.Clientes.Remove(cte);
-                    context.SaveChanges();
-                    presenter.MostrarMensaje("¡Cliente eliminado correctamente!");
-                }
-                catch (Exception ex)
-                {
-                    presenter.MostrarMensaje($"Error al eliminar: {ex.Message}");
-                }
+                presenter.MostrarMensaje("No se puede eliminar el cliente porque tiene facturas asociadas.");
+                presenter.MostrarMensaje("\nPresione [Enter] para volver al menú...");
+                reader.LeerCadena();
+                return;
             }
             else
             {
-                presenter.MostrarMensaje("Operación cancelada.");
+                // No tiene facturas, procedemos normalmente
+                presenter.MostrarConfirmacionEliminar(cte);
+                string confirmacion = reader.LeerCadena().ToUpper().Trim();
+
+                if (confirmacion == "SI")
+                {
+                    try
+                    {
+                        context.Clientes.Remove(cte);
+                        context.SaveChanges();
+                        presenter.MostrarMensaje("¡Cliente eliminado correctamente!");
+                    }
+                    catch (Exception ex)
+                    {
+                        presenter.MostrarMensaje($"Error al eliminar: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    presenter.MostrarMensaje("Operación cancelada.");
+                }
             }
+
             presenter.MostrarMensaje("\nPresione [Enter] para volver al menú...");
             reader.LeerCadena();
         }

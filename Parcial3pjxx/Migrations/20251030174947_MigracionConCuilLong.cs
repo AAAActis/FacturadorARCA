@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Parcial3pjxx.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracionInicialCorrecta : Migration
+    public partial class MigracionConCuilLong : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace Parcial3pjxx.Migrations
                 {
                     IdCliente = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CuilCuit = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CuilCuit = table.Column<long>(type: "bigint", maxLength: 11, nullable: false),
                     RazonSocial = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Domicilio = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
