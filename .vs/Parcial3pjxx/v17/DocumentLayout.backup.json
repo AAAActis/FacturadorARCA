@@ -3,25 +3,46 @@
   "WorkspaceRootPath": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Items.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\generic\\presenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\generic\\presenter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Facturas.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Clientes.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\generic\\reader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\generic\\reader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\codefirst\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\codefirst\\manager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\codefirst\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\codefirst\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\codefirst\\facturadordbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\codefirst\\facturadordbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\codefirst\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\codefirst\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|c:\\users\\santi\\desktop\\escmb-unc\\pla\\parcialtrespla\\parcial3pjxx\\codefirst\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E8F4A92-27B1-487F-8FF2-9DC1DDEFC2E0}|Parcial3pjxx\\Parcial3pjxx.csproj|solutionrelative:parcial3pjxx\\codefirst\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Items.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Facturas.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,7 +52,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,43 +72,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "dbo.Facturas [Datos]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Facturas.sql",
-              "ToolTip": "dbo.Facturas [Datos]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-10-30T23:30:31.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "dbo.Items [Datos]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Items.sql",
-              "ToolTip": "dbo.Items [Datos]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-10-30T23:30:06.612Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "dbo.Clientes [Datos]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Clientes.sql",
-              "ToolTip": "dbo.Clientes [Datos]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-10-30T23:29:21.544Z",
+              "Title": "Presenter.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Generic\\Presenter.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\Generic\\Presenter.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Generic\\Presenter.cs",
+              "RelativeToolTip": "Parcial3pjxx\\Generic\\Presenter.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAiwMwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T18:57:47.769Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Reader.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Generic\\Reader.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\Generic\\Reader.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Generic\\Reader.cs",
+              "RelativeToolTip": "Parcial3pjxx\\Generic\\Reader.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAmwGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T18:59:14.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Program.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\Program.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Program.cs",
+              "RelativeToolTip": "Parcial3pjxx\\Program.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAUwFEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T22:04:58.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\appsettings.json",
               "RelativeDocumentMoniker": "Parcial3pjxx\\appsettings.json",
               "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\appsettings.json",
               "RelativeToolTip": "Parcial3pjxx\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-10-30T23:29:04.627Z",
               "EditorCaption": ""
@@ -95,28 +125,85 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Manager.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Manager.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\CodeFirst\\Manager.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Manager.cs",
+              "RelativeToolTip": "Parcial3pjxx\\CodeFirst\\Manager.cs",
+              "ViewState": "AgIAAK4BAAAAAAAAAAAkwM8BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T20:16:36.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Item.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\CodeFirst\\Item.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Item.cs",
+              "RelativeToolTip": "Parcial3pjxx\\CodeFirst\\Item.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAqwBwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T18:58:28.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "FacturadorDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\FacturadorDbContext.cs",
               "RelativeDocumentMoniker": "Parcial3pjxx\\CodeFirst\\FacturadorDbContext.cs",
               "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\FacturadorDbContext.cs",
               "RelativeToolTip": "Parcial3pjxx\\CodeFirst\\FacturadorDbContext.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAkwDkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-30T23:28:58.026Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Program.cs",
-              "RelativeDocumentMoniker": "Parcial3pjxx\\Program.cs",
-              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\Program.cs",
-              "RelativeToolTip": "Parcial3pjxx\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "Factura.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Factura.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\CodeFirst\\Factura.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Factura.cs",
+              "RelativeToolTip": "Parcial3pjxx\\CodeFirst\\Factura.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAswCoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T22:04:58.845Z",
+              "WhenOpened": "2026-01-04T18:58:12.388Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Cliente.cs",
+              "RelativeDocumentMoniker": "Parcial3pjxx\\CodeFirst\\Cliente.cs",
+              "ToolTip": "C:\\Users\\Santi\\Desktop\\ESCMB-UNC\\PLA\\ParcialTresPLA\\Parcial3pjxx\\CodeFirst\\Cliente.cs",
+              "RelativeToolTip": "Parcial3pjxx\\CodeFirst\\Cliente.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAuwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T17:52:23.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "dbo.Items.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Items.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Items.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-10-30T23:30:06.612Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "dbo.Facturas.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Facturas.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/localhost_1433/ParcialTres/sa/SqlTable/dbo.Facturas.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-10-30T23:30:31.124Z"
             }
           ]
         }

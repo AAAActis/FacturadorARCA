@@ -1,11 +1,6 @@
-﻿using Parcial3pjxx.Generic;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Parcial3pjxx.CodeFirst
 {
@@ -14,14 +9,19 @@ namespace Parcial3pjxx.CodeFirst
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdItem { get; set; }
+
         [Required, MaxLength(200)]
         public string Descripcion { get; set; }
+
         [Required]
         public int Cantidad { get; set; }
+
         [Required]
         public decimal ImporteUnitario { get; set; }
+
         [NotMapped]
         public decimal SubTotal => Cantidad * ImporteUnitario;
+
         [ForeignKey("IdFactura")]
         public int IdFactura { get; set; }
         public virtual Factura Factura { get; set; }

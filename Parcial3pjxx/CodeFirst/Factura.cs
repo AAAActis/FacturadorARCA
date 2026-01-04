@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Parcial3pjxx.CodeFirst
 {
-    //El required significa que si o si lo pide, tmb le puse longitud a los valores
-    //me parece que a "tipo" no lo tendriamos que poner como char
     public class Factura
     {
         [Key]
@@ -25,6 +21,7 @@ namespace Parcial3pjxx.CodeFirst
         [Required]
         public DateTime Fecha { get; set; }
 
+        // SQLite maneja decimales, pero a veces requiere conversión. EF Core suele encargarse.
         public decimal ImporteTotal { get; set; }
 
         [ForeignKey("IdCliente")]
@@ -34,6 +31,13 @@ namespace Parcial3pjxx.CodeFirst
         public virtual ICollection<Item> Items { get; set; } = new List<Item>();
 
         [NotMapped]
-        public decimal Total => Items.Sum(i => i.SubTotal);
+        public decimal Total
+        {
+            get
+            {
+                if (Items == null) return 0;
+                return Items.Sum(i => i.SubTotal);
+            }
+        }
     }
 }

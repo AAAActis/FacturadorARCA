@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Parcial3pjxx.Generic
 {
@@ -13,15 +11,16 @@ namespace Parcial3pjxx.Generic
         {
             string borde = "==================================================";
             string tituloCentrado = $"-- {titulo} --";
-
             Console.Clear();
             Console.WriteLine(borde);
-            // Centramos el título (asumiendo un ancho de 50)
             int espacios = (50 - tituloCentrado.Length) / 2;
+            // Aseguramos que espacios no sea negativo
+            espacios = Math.Max(0, espacios);
             Console.WriteLine(tituloCentrado.PadLeft(espacios + tituloCentrado.Length));
             Console.WriteLine(borde);
-            Console.WriteLine(); // Espacio extra
+            Console.WriteLine();
         }
+
         public void MostrarMenuPrincipal()
         {
             MostrarTitulo("Bienvenidos al Facturador WEB de ARCA");
@@ -68,43 +67,14 @@ namespace Parcial3pjxx.Generic
             Console.WriteLine("==================================================");
             Console.Write("   Que opcion desea ingresar? -> ");
         }
-        public void MostrarMensaje(string v)
-        {
-            Console.WriteLine(v);
-        }
 
-        public void MostrarMensajeAlLado(string v)
-        {
-            Console.Write(v);
-        }
+        public void MostrarMensaje(string v) => Console.WriteLine(v);
+        public void MostrarMensajeAlLado(string v) => Console.Write(v);
 
-        public void MostrarCliente(Cliente cliente)
-        {
-            Console.WriteLine($"ID: {cliente.IdCliente}");
-            Console.WriteLine($"CUIL/CUIT: {cliente.CuilCuit}");
-            Console.WriteLine($"Razon Social: {cliente.RazonSocial}");
-            Console.WriteLine($"Domicilio: {cliente.Domicilio}");
-        }
-
-        public void MostrarCrearCliente()
-        {
-            MostrarTitulo("Crear Nuevo Cliente");
-        }
-
-        public void MostrarModificarCliente()
-        {
-            MostrarTitulo("Modificar Cliente");
-        }
-
-        public void MostrarEliminarCliente()
-        {
-            MostrarTitulo("Eliminar Cliente");
-        }
-
-        public void MostrarConsultarCliente()
-        {
-            MostrarTitulo("Consultar Cliente");
-        }
+        public void MostrarCrearCliente() => MostrarTitulo("Crear Nuevo Cliente");
+        public void MostrarModificarCliente() => MostrarTitulo("Modificar Cliente");
+        public void MostrarEliminarCliente() => MostrarTitulo("Eliminar Cliente");
+        public void MostrarConsultarCliente() => MostrarTitulo("Consultar Cliente");
 
         public void MostrarClienteCreado(Cliente cliente)
         {
@@ -119,14 +89,11 @@ namespace Parcial3pjxx.Generic
 
         public void MostrarMenuModificarCliente(Cliente cliente)
         {
-            // Usamos el metodo MostrarTitulo que ya creamos
             MostrarTitulo("Datos del Cliente a Modificar");
-
-            // Mostramos los datos actuales del cliente
-            Console.WriteLine($"   ID:           {cliente.IdCliente}");
+            Console.WriteLine($"   ID:            {cliente.IdCliente}");
             Console.WriteLine($"   Razón Social: {cliente.RazonSocial}");
-            Console.WriteLine($"   CUIT/CUIL:    {cliente.CuilCuit}");
-            Console.WriteLine($"   Domicilio:    {cliente.Domicilio}");
+            Console.WriteLine($"   CUIT/CUIL:     {cliente.CuilCuit}");
+            Console.WriteLine($"   Domicilio:     {cliente.Domicilio}");
             Console.WriteLine();
             Console.WriteLine("   ¿Qué dato deseas cambiar?");
             Console.WriteLine("   1. Domicilio");
@@ -138,14 +105,11 @@ namespace Parcial3pjxx.Generic
 
         public void MostrarConsultaCliente(Cliente cliente)
         {
-            // Usamos el metodo MostrarTitulo
             MostrarTitulo("Consulta de Cliente");
-
-            // Mostramos los datos actuales del cliente
-            Console.WriteLine($"   ID:           {cliente.IdCliente}");
+            Console.WriteLine($"   ID:            {cliente.IdCliente}");
             Console.WriteLine($"   Razón Social: {cliente.RazonSocial}");
-            Console.WriteLine($"   CUIT/CUIL:    {cliente.CuilCuit}");
-            Console.WriteLine($"   Domicilio:    {cliente.Domicilio}");
+            Console.WriteLine($"   CUIT/CUIL:     {cliente.CuilCuit}");
+            Console.WriteLine($"   Domicilio:     {cliente.Domicilio}");
             Console.WriteLine("==================================================");
             Console.WriteLine();
             Console.Write("   Presione [Enter] para volver al menú...");
@@ -153,14 +117,11 @@ namespace Parcial3pjxx.Generic
 
         public void MostrarConfirmacionEliminar(Cliente cliente)
         {
-            // Usamos el metodo MostrarTitulo
             MostrarTitulo("Datos del Cliente a Eliminar");
-
-            // Mostramos los datos actuales del cliente
-            Console.WriteLine($"   ID:           {cliente.IdCliente}");
+            Console.WriteLine($"   ID:            {cliente.IdCliente}");
             Console.WriteLine($"   Razón Social: {cliente.RazonSocial}");
-            Console.WriteLine($"   CUIT/CUIL:    {cliente.CuilCuit}");
-            Console.WriteLine($"   Domicilio:    {cliente.Domicilio}");
+            Console.WriteLine($"   CUIT/CUIL:     {cliente.CuilCuit}");
+            Console.WriteLine($"   Domicilio:     {cliente.Domicilio}");
             Console.WriteLine();
             Console.WriteLine("   !! ADVERTENCIA: Esta acción es permanente !!");
             Console.WriteLine("==================================================");
@@ -171,21 +132,13 @@ namespace Parcial3pjxx.Generic
         {
             string id = $"ID: {factura.IdFactura}".PadRight(10);
             string Fecha = $"Fecha: {factura.Fecha:dd/MM/yyyy}".PadRight(20);
-
-            string cliente = $"Cliente: (N/A)".PadRight(30);
-            if (factura.Cliente != null)
-            {
-                cliente = $"Cliente: {factura.Cliente.RazonSocial}".PadRight(30);
-            }
-
+            string cliente = factura.Cliente != null ? $"Cliente: {factura.Cliente.RazonSocial}".PadRight(30) : "Cliente: (N/A)".PadRight(30);
             string total = $"Total: $ {factura.Total:N2}";
-
             Console.WriteLine($"{id} {Fecha} {cliente} {total}");
         }
 
         public void MostrarListaFacturas(List<Factura> facturas)
         {
-
             if (facturas == null || !facturas.Any())
             {
                 Console.WriteLine("No hay facturas para mostrar.");
@@ -197,25 +150,21 @@ namespace Parcial3pjxx.Generic
                     MostrarFacturaSimple(factura);
                 }
             }
-
             Console.WriteLine("==================================================");
             Console.WriteLine();
             Console.Write("   Presione [Enter] para volver al menú...");
         }
 
-        
-            
         public void MostrarFactura(Factura factura)
         {
             string separador = "---------------------------------------------";
             Console.WriteLine(separador);
-
             string numeroFormateado = $"0001-{factura.Numero.ToString("D8")}";
 
-            Console.WriteLine($"Factura:       {factura.Tipo}");
-            Console.WriteLine($"Numero:        {numeroFormateado}");
-            Console.WriteLine($"Fecha:         {factura.Fecha.ToString("dd/MM/yyyy")}");
-            Console.WriteLine(); // espacio
+            Console.WriteLine($"Factura:        {factura.Tipo}");
+            Console.WriteLine($"Numero:         {numeroFormateado}");
+            Console.WriteLine($"Fecha:          {factura.Fecha:dd/MM/yyyy}");
+            Console.WriteLine();
 
             if (factura.Cliente != null)
             {
@@ -229,23 +178,17 @@ namespace Parcial3pjxx.Generic
             }
 
             Console.WriteLine(separador);
-            Console.WriteLine(); //espacio
+            Console.WriteLine();
 
-            // Mostramos los items
             if (factura.Items != null && factura.Items.Any())
             {
-                // Ajustamos el encabezado para que coincida con los nuevos anchos
-                Console.WriteLine("Cant.  Descripcion                  P. Unit.     Subtotal");
+                Console.WriteLine("Cant.  Descripcion                  P. Unit.      Subtotal");
                 foreach (var item in factura.Items)
                 {
                     string cant = item.Cantidad.ToString().PadLeft(6);
-
                     string desc = item.Descripcion.Length > 25 ? item.Descripcion.Substring(0, 25) : item.Descripcion.PadRight(25);
-
-                    string pUnit = $"$ {item.ImporteUnitario.ToString("N2")}".PadLeft(14); // "C" es formato Moneda
-
-                    string sub = $"$ {item.SubTotal.ToString("N2")}".PadLeft(14);
-
+                    string pUnit = $"$ {item.ImporteUnitario:N2}".PadLeft(14);
+                    string sub = $"$ {item.SubTotal:N2}".PadLeft(14);
                     Console.WriteLine($"{cant}  {desc} {pUnit} {sub}");
                 }
             }
@@ -255,9 +198,8 @@ namespace Parcial3pjxx.Generic
             }
 
             Console.WriteLine(separador);
-
-            Console.WriteLine($"TOTAL: $ {factura.Total.ToString("N2")}");
-            Console.WriteLine(separador); 
+            Console.WriteLine($"TOTAL: $ {factura.Total:N2}");
+            Console.WriteLine(separador);
         }
     }
 }

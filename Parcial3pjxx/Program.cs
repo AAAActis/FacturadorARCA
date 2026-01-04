@@ -4,21 +4,32 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Parcial3pjxx.CodeFirst;
 using Parcial3pjxx.Generic;
+using System;
 using System.IO;
 
 public class Program
 {
     private static void Main(string[] args)
     {
-
-
         var services = ConfigureDependencies();
         using (var scope = services.CreateScope())
         {
-            FacturadorDbContext context = scope.ServiceProvider.GetRequiredService<FacturadorDbContext>();
-            context.Database.Migrate();
-            var manager = scope.ServiceProvider.GetRequiredService<Manager>();
-            manager.Iniciar();
+            try
+            {
+                FacturadorDbContext _context = scope.ServiceProvider.GetRequiredService<FacturadorDbContext>();
+
+                // CAMBIO CLAVE: EnsureCreated crea la DB y tablas si no existen.
+                // Al no tener migraciones, esto es lo que necesitas.
+                _context.Database.EnsureCreated();
+                Console.WriteLine("Base de datos SQLite lista y conectada.");
+
+                var manager = scope.ServiceProvider.GetRequiredService<Manager>();
+                manager.Iniciar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al iniciar la aplicación: {ex.Message}");
+            }
         }
     }
 
@@ -28,7 +39,8 @@ public class Program
         IServiceCollection services = new ServiceCollection();
 
         services.AddDbContext<FacturadorDbContext>(options => {
-            options.UseSqlServer(config.GetConnectionString("DbContext"));
+            // CAMBIO: UseSqlite
+            options.UseSqlite(config.GetConnectionString("DbContext"));
         }, ServiceLifetime.Scoped);
 
         services.AddScoped<Manager>();
@@ -43,7 +55,7 @@ public class Program
         string directory = Directory.GetCurrentDirectory();
         return new ConfigurationBuilder()
             .SetBasePath(directory)
-            .AddJsonFile("appsettings.json", true, true)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .Build();
     }
 
@@ -51,24 +63,19 @@ public class Program
     {
         public FacturadorDbContext CreateDbContext(string[] args)
         {
-            // Obtenemos la ruta al directorio actual (donde se ejecuta el comando)
             string basePath = Directory.GetCurrentDirectory();
 
-            // Construimos la configuración para leer el appsettings.json
-            // Es lo mismo que haces en SetConfigurationRoot
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(basePath)
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            // Obtenemos la cadena de conexión
             var connectionString = configuration.GetConnectionString("DbContext");
 
-            // Creamos las opciones del DbContext y le decimos que use SQL Server
             var optionsBuilder = new DbContextOptionsBuilder<FacturadorDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            // CAMBIO: UseSqlite para tiempo de diseño
+            optionsBuilder.UseSqlite(connectionString);
 
-            // Creamos y devolvemos la instancia del DbContext
             return new FacturadorDbContext(optionsBuilder.Options);
         }
     }

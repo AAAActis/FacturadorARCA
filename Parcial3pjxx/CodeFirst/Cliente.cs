@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Parcial3pjxx.CodeFirst
 {
@@ -13,21 +10,21 @@ namespace Parcial3pjxx.CodeFirst
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCliente { get; set; }
+
         [Required]
-        [MaxLength(11)]
+        // SQLite soporta long (INTEGER), pero no tiene limite de chars estricto como SQL, igual EF lo valida.
         public long CuilCuit { get; set; }
+
         [Required]
         [MaxLength(200)]
         public string RazonSocial { get; set; }
-        [MaxLength(200)]
 
+        [MaxLength(200)]
         public string Domicilio { get; set; }
+
         public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
 
-        public Cliente()
-        {
-
-        }
+        public Cliente() { }
 
         public Cliente(long cuil, string razon, string domicilio)
         {
@@ -37,4 +34,3 @@ namespace Parcial3pjxx.CodeFirst
         }
     }
 }
-
